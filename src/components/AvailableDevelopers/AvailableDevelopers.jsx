@@ -11,7 +11,6 @@ const AvailableDevelopers = ({ developers, searchInput }) => {
         }
         return devprofileData;
     }).map((devprofileData) => {
-        console.log(devprofileData);
         return <DevIndividualResult key={devprofileData.id} githubId={devprofileData.id} avatarUrl={devprofileData.avatar_url}></DevIndividualResult>
     });
     return (
