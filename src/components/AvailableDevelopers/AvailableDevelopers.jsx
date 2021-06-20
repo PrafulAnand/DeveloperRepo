@@ -3,17 +3,21 @@ import DevIndividualResult from '../DevIndividualResult/DevIndividualResult';
 import './AvailableDevelopers.css'
 
 
-const  AvailableDevelopers = ({developers}) => {
+const AvailableDevelopers = ({ developers, searchInput }) => {
 
-    const availableDevelopers = developers.map((devprofileData) => {
-        return <DevIndividualResult key = {devprofileData.id} githubId = {devprofileData.id} avatarUrl = {devprofileData.avatar_url}></DevIndividualResult>
+    const availableDevelopers = developers.filter((devprofileData) => {
+       if ( devprofileData.id.toLowerCase().includes(searchInput.toLowerCase())){
+            return devprofileData;
+        }
+        return devprofileData;
+    }).map((devprofileData) => {
+        console.log(devprofileData);
+        return <DevIndividualResult key={devprofileData.id} githubId={devprofileData.id} avatarUrl={devprofileData.avatar_url}></DevIndividualResult>
     });
-
-
     return (
         <div>
-        <div className = "developers-container">{availableDevelopers}</div>
-        <hr className = "horizontal-line-developers"></hr>
+            <div className="developers-container">{availableDevelopers}</div>
+            <hr className="horizontal-line-developers"></hr>
         </div>
     )
 }
