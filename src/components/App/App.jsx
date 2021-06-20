@@ -25,8 +25,10 @@ class App extends React.Component{
           });
       };
 
-      setSearchText = (event) => {
-          this.setState({searchText:event.target.value});
+      setSearchText = (inputValue) => {
+          this.setState({
+              searchText:inputValue
+        });
       }
 
     render() {
@@ -34,7 +36,7 @@ class App extends React.Component{
             <div>
                 <Header headTitle = {this.state.headerText}/>
                 <SearchBox onInputChange = {this.setSearchText}/>
-                <AvailableDevelopers developers = {this.state.developers}/>
+                <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>
             </div>
         );
     }
