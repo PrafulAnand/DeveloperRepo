@@ -1,0 +1,26 @@
+.developers-container {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 100px;
+  max-width: 1200px;
+  padding: 50px;
+}
+
+/* @media (min-width: 600px) {
+  .developers-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .developers-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+.horizontal-line-developers {
+  height: 2px;
+  background: #d0cde1;
+  margin: 0 50px;
+}

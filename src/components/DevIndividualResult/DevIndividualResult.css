@@ -1,0 +1,28 @@
+.individual-dev-profile-link {
+  text-decoration: none;
+  width: 50px;
+}
+
+.individual-dev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.individual-dev img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.developer-avatar-name {
+  color: #a48d63;
+  font-size: 30px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+.developer-avatar-arrow {
+  color: #006af9;
+  font-size: 24px;
+}
