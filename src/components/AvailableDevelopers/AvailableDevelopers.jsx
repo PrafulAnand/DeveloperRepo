@@ -4,12 +4,8 @@ import './AvailableDevelopers.css'
 
 
 const AvailableDevelopers = ({ developers, searchInput }) => {
-
     const availableDevelopers = developers.filter((devprofileData) => {
-       if ( devprofileData.id.toLowerCase().includes(searchInput.toLowerCase())){
-            return devprofileData;
-        }
-        return devprofileData;
+       return devprofileData.id.toLowerCase().includes(searchInput.toLowerCase())
     }).map((devprofileData) => {
         return <DevIndividualResult key={devprofileData.id} githubId={devprofileData.id} avatarUrl={devprofileData.avatar_url}></DevIndividualResult>
     });
