@@ -1,0 +1,21 @@
+.question-add-dev-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 30px auto;
+}
+
+.question-add-dev {
+  margin: 50px auto;
+  color: #3f3d56;
+}
+
+.add-dev-btn {
+  color: white;
+  background-color: #7c639f;
+  height: 50px;
+  border-radius: 15px;
+  padding: 0 72px;
+}
