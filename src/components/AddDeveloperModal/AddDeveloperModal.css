@@ -8,14 +8,16 @@
 }
 
 .question-add-dev {
+  font-size: 36px;
   margin: 50px auto;
   color: #3f3d56;
 }
 
 .add-dev-btn {
+  font-size: 36px;
   color: white;
   background-color: #7c639f;
-  height: 50px;
+  height: 80px;
   border-radius: 15px;
   padding: 0 72px;
 }
