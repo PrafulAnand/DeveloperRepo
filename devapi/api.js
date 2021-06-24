@@ -24,21 +24,35 @@ router.get('/developers/:id', (req, res) => {
 });
 
 router.post('/developers', (req, res) => {
+    let isDevProfilePresent = false;
     const devProfileData = req.body;
     const { github_id } = devProfileData;
-    const userGitHubPromise = axios(`https://api.github.com/users/${github_id}`);
-    const userRepoPromise = axios(`https://api.github.com/users/${github_id}/repos`);
-    Promise.all([userGitHubPromise, userRepoPromise]).then(responses => {
-        const userGithubInfo = responses[0].data;
-        const userRepoInfo = getReposDataForDev(responses[1].data);
-        devProfiles.push(
-            {
-                id: github_id, avatar_url: userGithubInfo.avatar_url, name: userGithubInfo.name,
-                company: userGithubInfo.company, blog: userGithubInfo.blog, location: userGithubInfo.location,
-                email: userGithubInfo.email, bio: userGithubInfo.bio, ...devProfileData, repos: userRepoInfo
-            });
-        res.send({ id: github_id });
-    });
+    if (devProfiles.length > 0) {
+        const isUserAlreadyPresent = devProfiles.find((dev) => dev.id === github_id)
+        if (isUserAlreadyPresent !== undefined) {
+            isDevProfilePresent = true;
+        }
+    }
+
+    if (!isDevProfilePresent) {
+        const userGitHubPromise = axios(`https://api.github.com/users/${github_id}`);
+        const userRepoPromise = axios(`https://api.github.com/users/${github_id}/repos`);
+        Promise.all([userGitHubPromise, userRepoPromise]).then(responses => {
+            const userGithubInfo = responses[0].data;
+            const userRepoInfo = getReposDataForDev(responses[1].data);
+            devProfiles.push(
+                {
+                    id: github_id, avatar_url: userGithubInfo.avatar_url, name: userGithubInfo.name,
+                    company: userGithubInfo.company, blog: userGithubInfo.blog, location: userGithubInfo.location,
+                    email: userGithubInfo.email, bio: userGithubInfo.bio, ...devProfileData, repos: userRepoInfo
+                });
+            res.status(201).send({ id: github_id });
+        }).catch((error) => {
+            res.status(400).send(`Unexpected error -> ${error}`);
+        });
+    } else {
+        res.status(201).send({ id: github_id });
+    }
 });
 
 router.delete('/developers/:id', (req, res) => {
