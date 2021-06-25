@@ -1,5 +1,6 @@
 import React from 'react';
 import './AddDevInfoFormModal.css';
+import CircleLoader from "react-spinners/CircleLoader";
 import GithubLogo from '../resources/ProfileIcons/iconfinder_github_317712.png';
 import LinkedinLogo from '../resources/ProfileIcons/iconfinder_2018_social_media_popular_app_logo_linkedin_3225190.png';
 import CodechefLogo from '../resources/ProfileIcons/codechef-1324440139527402917_32.png';
@@ -19,9 +20,11 @@ class AddDevInfoFormModal extends React.Component {
     twitterId: '',
     mediumId: '',
     errorMessage: null,
+    loading: false
   }
 
-  postAddDeveInfo = () => {
+
+  postAddDevInfo = () => {
     fetch(`/api/developers`, {
       method: 'POST',
       headers: {
@@ -48,7 +51,7 @@ class AddDevInfoFormModal extends React.Component {
         }
       })
       .catch((e) => {
-        this.setState({ errorMessage: e.message });
+        this.setState({ errorMessage: e.message, loading:false});
       });
   };
 
@@ -59,9 +62,10 @@ class AddDevInfoFormModal extends React.Component {
   submitHandler = (event) => {
     event.preventDefault();
     if (this.state.githubId.trim() === '') {
-      this.setState({ errorMessage: 'GitHub user ID is mandatory.' });
+      this.setState({ errorMessage: 'GitHub user ID is mandatory.', loading:false});
     } else {
-      this.postAddDeveInfo();
+      this.setState({loading:true});
+      this.postAddDevInfo();
     }
   };
 
@@ -74,6 +78,7 @@ class AddDevInfoFormModal extends React.Component {
       twitterId: '',
       mediumId: '',
       errorMessage: null,
+      loading:false
     });
     this.props.onModalButtonClick(false);
   };
@@ -98,6 +103,7 @@ class AddDevInfoFormModal extends React.Component {
           <div className="body">
             <hr className="hrule-modal" />
             <form onSubmit={this.submitHandler}>
+            {this.state.loading && this.state.errorMessage === null &&<CircleLoader size = {150} />}
                 <DevInfoFormFields src={GithubLogo} label="Github*" name="githubId" onChange={this.setDifferentDevProfileIds} />
                 <DevInfoFormFields src={LinkedinLogo} label="Linkedin" name="linkedinId" onChange={this.setDifferentDevProfileIds} />
                 <DevInfoFormFields src={CodechefLogo} label="Codechef" name="codechefId" onChange={this.setDifferentDevProfileIds} />
@@ -118,9 +124,5 @@ class AddDevInfoFormModal extends React.Component {
 
   }
 }
-
-// const AddDevInfoFormModal = ({ onModalButtonClick }) => {
-
-// }
 
 export default AddDevInfoFormModal;

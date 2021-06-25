@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import SearchBox from '../SearchBox/SearchBox';
+import ClipLoader from "react-spinners/ClipLoader";
 import AvailableDevelopers from '../AvailableDevelopers/AvailableDevelopers';
 import AddDeveloperInfoButton from '../AddDeveloperInfoButton/AddDeveloperInfoButton';
 import AddDevInfoFormModal from '../AddDevInfoFormModal/AddDevInfoFormModal';
@@ -15,7 +16,8 @@ class App extends React.Component{
         headerText: "The Developer Repository",
         developers: [],
         searchText: '',
-        showModal: false
+        showModal: false,
+        loader: true
     }
 
     componentDidMount() {
@@ -27,6 +29,7 @@ class App extends React.Component{
           .then((response) => response.json())
           .then((data) => {
             this.setState({ developers: data });
+            this.setState({loader: false});
           }).catch((error) => {
               console.error(error);
           });
@@ -46,10 +49,11 @@ class App extends React.Component{
 
     render() {
         return(
-            <div>
+            <div className = "App">
                 <Header headTitle = {this.state.headerText}/>
                 <SearchBox onInputChange = {this.setSearchText}/>
-                {this.state.developers.length>0 && <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>}
+                {(this.state.loader && this.state.developers.length>0) ? <ClipLoader size = {150}/> :                
+                this.state.developers.length>0 && <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>}
                 <AddDeveloperInfoButton onButtonClick = {this.setShowModal}/>
                 {this.state.showModal && <AddDevInfoFormModal onModalButtonClick = {this.setShowModal} fetchAllDevelopers = {this.fetchAllDevelopers} />}
                 <Footer />

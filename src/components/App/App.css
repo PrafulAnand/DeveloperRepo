@@ -6,3 +6,8 @@
   margin: 0;
   font-family: "Nunito", sans-serif;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
