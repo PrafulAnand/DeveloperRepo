@@ -1,65 +1,17 @@
-import React from 'react';
-import './App.css';
-import Header from '../Header/Header';
-import SearchBox from '../SearchBox/SearchBox';
-import ClipLoader from "react-spinners/ClipLoader";
-import AvailableDevelopers from '../AvailableDevelopers/AvailableDevelopers';
-import AddDeveloperInfoButton from '../AddDeveloperInfoButton/AddDeveloperInfoButton';
-import AddDevInfoFormModal from '../AddDevInfoFormModal/AddDevInfoFormModal';
-import Footer from '../Footer/Footer';
+import '../App/App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ProfilePage from '../ProfilePage/ProfilePage';
+import DevProfileHomePage from '../DevProfileHomePage/DevProfileHomePage';
 
-
-
-class App extends React.Component{
-    
-    state = {
-        headerText: "The Developer Repository",
-        developers: [],
-        searchText: '',
-        showModal: false,
-        loader: true
-    }
-
-    componentDidMount() {
-        this.fetchAllDevelopers();
-      }
-    
-      fetchAllDevelopers = () => {
-        fetch(`/api/developers`)
-          .then((response) => response.json())
-          .then((data) => {
-            this.setState({ developers: data });
-            this.setState({loader: false});
-          }).catch((error) => {
-              console.error(error);
-          });
-      };
-
-      setSearchText = (inputValue) => {
-          this.setState({
-              searchText:inputValue
-        });
-      }
-
-      setShowModal = (value) => {
-          this.setState({
-              showModal:value
-          })
-      }
-
-    render() {
-        return(
-            <div className = "App">
-                <Header headTitle = {this.state.headerText}/>
-                <SearchBox onInputChange = {this.setSearchText}/>
-                {(this.state.loader && this.state.developers.length>0) ? <ClipLoader size = {150}/> :                
-                this.state.developers.length>0 && <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>}
-                <AddDeveloperInfoButton onButtonClick = {this.setShowModal}/>
-                {this.state.showModal && <AddDevInfoFormModal onModalButtonClick = {this.setShowModal} fetchAllDevelopers = {this.fetchAllDevelopers} />}
-                <Footer />
-            </div>
-        );
-    }
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={DevProfileHomePage} />
+        <Route exact path="/profile/:id" component={ProfilePage} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
