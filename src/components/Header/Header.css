@@ -1,11 +1,9 @@
 .devprofile-header-container {
-  display: flex;
   width: 100%;
   height: 500px;
   font-family: "Nunito Sans", sans-serif;
   background: #2f2e41;
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -20,6 +18,5 @@
 
 .devprofile-headerimg {
   height: 400px;
-  padding: 50px;
-  margin: 80px;
+  margin: 50px;
 }
