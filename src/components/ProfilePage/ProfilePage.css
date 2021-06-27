@@ -1,0 +1,140 @@
+.dev-profile-header {
+  height: 50px;
+  background-color: #2f2e41;
+  color: #ffffff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dev-profile-header-item {
+  margin: 0 35px;
+}
+
+.all-developers-home {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.all-developers-home:hover {
+  color: aqua;
+}
+
+.dev-info-container {
+  background-color: #e5e5e5;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 80px 10vw 50px 10vw;
+}
+
+.dev-info-profile-avatar img {
+  border-radius: 50%;
+  border-style: groove;
+}
+
+.developer-basic-info {
+  margin: 50px;
+}
+
+.developer-name {
+  font-weight: 600;
+  font-size: 40px;
+  margin: 30px 10px;
+}
+
+.developer-bio {
+  font-size: 24px;
+  margin: 30px 10px;
+}
+
+.dev-profile-links {
+  margin: 30px 10px;
+}
+
+.dev-profile-links a {
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.dev-profile-links a:hover {
+  cursor: pointer;
+}
+
+.developer-other-info {
+  margin: 30px 10px;
+  font-size: 16px;
+}
+
+.align-info-sec {
+  display: flex;
+  align-items: center;
+}
+
+.loc-icon {
+  margin-right: 10px;
+}
+
+.loc-info {
+  margin: 5px 30px 5px 0;
+}
+
+.blog-link {
+  cursor: pointer;
+}
+
+.blog-link a {
+  text-decoration: none;
+  color: #0768fa;
+}
+
+.devprofile-repo-section {
+  background-color: #ffffff;
+}
+
+.github-repo-heading {
+  color: #3f3d56;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 50px;
+  margin: 50px 0;
+}
+
+.hrule-r {
+  background-color: #d0cde1;
+  border: 0;
+  height: 2px;
+  margin: 0 7vw;
+}
+
+.repo {
+  margin: 30px 7vw;
+}
+
+.dev-repo-name {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  color: #0768fa;
+}
+
+.dev-repo-name a {
+  text-decoration: none;
+}
+
+.dev-repo-updated-at {
+  font-size: 22px;
+  line-height: 33px;
+  color: #b2b1bb;
+  margin-left: 30px;
+}
+
+.dev-repo-description {
+  color: #3f3d56;
+  font-size: 25px;
+  line-height: 40px;
+}
