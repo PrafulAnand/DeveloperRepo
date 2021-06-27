@@ -13,13 +13,13 @@
 }
 
 .modalContainer {
-  width: 50vw;
-  height: 40vw;
+  width: 60vw;
+  height: 70vh;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 25px;
-  overflow: scroll;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
