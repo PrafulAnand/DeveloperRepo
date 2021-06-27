@@ -9,7 +9,7 @@ return(
       <img src={src} height="30px" width="30px" alt="logo" className="logo-img" />
       <span className="logo-label-inner">{label}</span>
     </div>
-    <input name={name} onChange={onChange} className="profile-item-input" />
+    <input name={name} onChange={onChange} className="profile-item-input" autoComplete ="off" />
   </div>
 );
 }

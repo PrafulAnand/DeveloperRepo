@@ -2,12 +2,17 @@ import React from 'react';
 import Header from '../Header/Header';
 import SearchBox from '../SearchBox/SearchBox';
 import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 import AvailableDevelopers from '../AvailableDevelopers/AvailableDevelopers';
 import AddDeveloperInfoButton from '../AddDeveloperInfoButton/AddDeveloperInfoButton';
 import AddDevInfoFormModal from '../AddDevInfoFormModal/AddDevInfoFormModal';
 import Footer from '../Footer/Footer';
 
-
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 class DevProfileHomePage extends React.Component{
     
@@ -50,7 +55,7 @@ class DevProfileHomePage extends React.Component{
             <div className = "App">
                 <Header headTitle = {this.state.headerText}/>
                 <SearchBox onInputChange = {this.setSearchText}/>
-                {(this.state.loader && this.state.developers.length>0) ? <ClipLoader size = {150}/> :                
+                {(this.state.loader && this.state.developers.length>0) ? <ClipLoader size = {150} css= {override}/> :                
                 this.state.developers.length>0 && <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>}
                 <AddDeveloperInfoButton onButtonClick = {this.setShowModal}/>
                 {this.state.showModal && <AddDevInfoFormModal onModalButtonClick = {this.setShowModal} fetchAllDevelopers = {this.fetchAllDevelopers} />}

@@ -86,7 +86,10 @@ class AddDevInfoFormModal extends React.Component {
 
   render() {
     return (
-      <div className="modalBackground">
+      <div className="modalBackground"
+      onClick={() => {
+        this.props.onModalButtonClick(false);
+      }}>
         <div className="modalContainer">
           <div className="titleCloseBtn">
             <button
