@@ -18,6 +18,7 @@ class ProfilePage extends React.Component {
 
     state = {
         developersData: [],
+        repos : [],
         loader: true
     }
 
@@ -28,7 +29,7 @@ class ProfilePage extends React.Component {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                this.setState({ developersData: data[0] , loader:false});
+                this.setState({ developersData: data[0] , repos: data[0].repos,loader:false});
             })
     }
 
@@ -37,8 +38,6 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-        // const { developersData } = this.state;
-        console.log("rendering",this.state.developersData);
         return (
             <>
                 <ProfilePageNavHeader />
@@ -58,7 +57,8 @@ class ProfilePage extends React.Component {
                     blog = {this.state.developersData.blog}
                 />
                 {this.state.loader && <ClipLoader size = {150} css={override} />}
-                {this.state.developersData.repos && <DevProfileRepoSection repos = {this.state.developersData.repos}/>}
+                {this.state.repos.length>0 ? <DevProfileRepoSection repos = {this.state.repos}/>
+                : <div className= "no-repos-found">No Github repos Found 👀</div>}
                 <Footer />
             </>
         )

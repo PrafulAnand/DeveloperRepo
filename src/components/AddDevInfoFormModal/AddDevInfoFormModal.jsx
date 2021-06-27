@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddDevInfoFormModal.css';
 import CircleLoader from "react-spinners/CircleLoader";
+import { css } from "@emotion/react";
 import GithubLogo from '../resources/ProfileIcons/iconfinder_github_317712.png';
 import LinkedinLogo from '../resources/ProfileIcons/iconfinder_2018_social_media_popular_app_logo_linkedin_3225190.png';
 import CodechefLogo from '../resources/ProfileIcons/codechef-1324440139527402917_32.png';
@@ -9,7 +10,11 @@ import TwitterLogo from '../resources/ProfileIcons/iconfinder_2018_social_media_
 import MediumLogo from '../resources/ProfileIcons/iconfinder_Circled_Medium_svg5_5279113.png';
 import DevInfoFormFields from './DevInfoFormFields';
 
-
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 class AddDevInfoFormModal extends React.Component {
 
   state = {
@@ -51,7 +56,7 @@ class AddDevInfoFormModal extends React.Component {
         }
       })
       .catch((e) => {
-        this.setState({ errorMessage: e.message, loading:false});
+        this.setState({ errorMessage: e.message, loading: false });
       });
   };
 
@@ -62,9 +67,9 @@ class AddDevInfoFormModal extends React.Component {
   submitHandler = (event) => {
     event.preventDefault();
     if (this.state.githubId.trim() === '') {
-      this.setState({ errorMessage: 'GitHub user ID is mandatory.', loading:false});
+      this.setState({ errorMessage: 'GitHub user ID is mandatory.', loading: false });
     } else {
-      this.setState({loading:true});
+      this.setState({ loading: true });
       this.postAddDevInfo();
     }
   };
@@ -78,7 +83,7 @@ class AddDevInfoFormModal extends React.Component {
       twitterId: '',
       mediumId: '',
       errorMessage: null,
-      loading:false
+      loading: false
     });
     this.props.onModalButtonClick(false);
   };
@@ -86,10 +91,7 @@ class AddDevInfoFormModal extends React.Component {
 
   render() {
     return (
-      <div className="modalBackground"
-      onClick={() => {
-        this.props.onModalButtonClick(false);
-      }}>
+      <div className="modalBackground">
         <div className="modalContainer">
           <div className="titleCloseBtn">
             <button
@@ -106,17 +108,17 @@ class AddDevInfoFormModal extends React.Component {
           <div className="body">
             <hr className="hrule-modal" />
             <form onSubmit={this.submitHandler}>
-            {this.state.loading && this.state.errorMessage === null &&<CircleLoader size = {150} />}
-                <DevInfoFormFields src={GithubLogo} label="Github*" name="githubId" onChange={this.setDifferentDevProfileIds} />
-                <DevInfoFormFields src={LinkedinLogo} label="Linkedin" name="linkedinId" onChange={this.setDifferentDevProfileIds} />
-                <DevInfoFormFields src={CodechefLogo} label="Codechef" name="codechefId" onChange={this.setDifferentDevProfileIds} />
-                <DevInfoFormFields src={HackerrankLogo} label="Hackerrank" name="hackerrankId" onChange={this.setDifferentDevProfileIds} />
-                <DevInfoFormFields src={TwitterLogo} label="Twitter" name="twitterId" onChange={this.setDifferentDevProfileIds} />
-                <DevInfoFormFields src={MediumLogo} label="Medium" name="mediumId" onChange={this.setDifferentDevProfileIds} />
+              {this.state.loading && this.state.errorMessage === null && <CircleLoader size={150} css={override} />}
+              <DevInfoFormFields src={GithubLogo} label="Github*" name="githubId" onChange={this.setDifferentDevProfileIds} />
+              <DevInfoFormFields src={LinkedinLogo} label="Linkedin" name="linkedinId" onChange={this.setDifferentDevProfileIds} />
+              <DevInfoFormFields src={CodechefLogo} label="Codechef" name="codechefId" onChange={this.setDifferentDevProfileIds} />
+              <DevInfoFormFields src={HackerrankLogo} label="Hackerrank" name="hackerrankId" onChange={this.setDifferentDevProfileIds} />
+              <DevInfoFormFields src={TwitterLogo} label="Twitter" name="twitterId" onChange={this.setDifferentDevProfileIds} />
+              <DevInfoFormFields src={MediumLogo} label="Medium" name="mediumId" onChange={this.setDifferentDevProfileIds} />
               <div className="error-div">{this.state.errorMessage}</div>
               <hr className="hrule-modal" />
               <div className="footer-form">
-                <button onClick={ this.closeAddDevInfoModal } className="cancel-Btn">Cancel</button>
+                <button onClick={this.closeAddDevInfoModal} className="cancel-Btn">Cancel</button>
                 <button className="submit-Btn">Submit</button>
               </div>
             </form>

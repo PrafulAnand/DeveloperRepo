@@ -10,10 +10,12 @@ const AvailableDevelopers = ({ developers, searchInput }) => {
         return <DevIndividualResult key={devprofileData.id} githubId={devprofileData.id} avatarUrl={devprofileData.avatar_url}></DevIndividualResult>
     });
     return (
-        <div>
-            <div className="developers-container">{availableDevelopers}</div>
+            <div className="developers-container">
+                <section className = "devsection">
+                {availableDevelopers}
+                </section>
             <hr className="horizontal-line-developers"></hr>
-        </div>
+                </div>
     )
 }
 

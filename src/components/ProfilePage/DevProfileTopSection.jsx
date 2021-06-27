@@ -6,7 +6,6 @@ import BlogIcon from '../resources/Icons/insert_link-24px.svg';
 
 
 const DevProfileTopSection = ({ defaultAvatar, devName, bio, github, linkedin, codechef, twitter, medium, hackerrank, email, location, company, blog }) => {
-console.log(github);
     return (
         <section className="dev-info-container">
             <span className="dev-info-profile-avatar">
@@ -19,7 +18,7 @@ console.log(github);
             </span>
             <span>
                 <div className="developer-basic-info">
-                    <div className="developer-name">{devName}</div>
+                    <div className="developer-name">{devName ? devName : github}</div>
                     <div className="developer-bio">{bio}</div>
                     <DevProfileLinks
                         github={github}

@@ -55,8 +55,9 @@ class DevProfileHomePage extends React.Component{
             <div className = "App">
                 <Header headTitle = {this.state.headerText}/>
                 <SearchBox onInputChange = {this.setSearchText}/>
-                {(this.state.loader && this.state.developers.length>0) ? <ClipLoader size = {150} css= {override}/> :                
-                this.state.developers.length>0 && <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>}
+                {(this.state.loader && this.state.developers.length>0) && <ClipLoader size = {150} css= {override}/>}                
+                {this.state.developers.length>0 ? <AvailableDevelopers developers = {this.state.developers} searchInput = {this.state.searchText}/>
+                 : <div className = "no-dev-added-yet"> No devs Added yet!! </div>}
                 <AddDeveloperInfoButton onButtonClick = {this.setShowModal}/>
                 {this.state.showModal && <AddDevInfoFormModal onModalButtonClick = {this.setShowModal} fetchAllDevelopers = {this.fetchAllDevelopers} />}
                 <Footer />

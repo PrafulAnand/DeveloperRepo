@@ -7,6 +7,8 @@ const DevProfileRepoSection = ({repos}) => {
         const date = new Date(updatedDate);
         return `Updated on ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
     }
+    console.log(typeof(repos))
+
 
     return (
         <section className="devprofile-repo-section">
