@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import './ProfilePage.css';
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
 import ProfilePageNavHeader from './ProfilePageNavHeader';
 import defaultAvatar from '../resources/Icons/account_circle-24px.svg';
 import Footer from '../Footer/Footer';
 import DevProfileTopSection from './DevProfileTopSection';
 import DevProfileRepoSection from './DevProfileRepoSection';
 
-
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 class ProfilePage extends React.Component {
 
@@ -21,7 +28,7 @@ class ProfilePage extends React.Component {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                this.setState({ developersData: data[0] });
+                this.setState({ developersData: data[0] , loader:false});
             })
     }
 
@@ -50,6 +57,7 @@ class ProfilePage extends React.Component {
                     company = {this.state.developersData.company}
                     blog = {this.state.developersData.blog}
                 />
+                {this.state.loader && <ClipLoader size = {150} css={override} />}
                 {this.state.developersData.repos && <DevProfileRepoSection repos = {this.state.developersData.repos}/>}
                 <Footer />
             </>

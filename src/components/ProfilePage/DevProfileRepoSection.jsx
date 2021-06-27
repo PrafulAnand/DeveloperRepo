@@ -15,7 +15,7 @@ const DevProfileRepoSection = ({repos}) => {
             .sort((repo1, repo2) => new Date(repo2.updated_at) - new Date(repo1.updatedat))
                 .map(repo => (
                     <div key={repo.name}>
-                        <hr />
+                        <hr className="hrule-r" />
                         <Repositories
                             name={repo.name}
                             htmlUrl={repo.html_url}

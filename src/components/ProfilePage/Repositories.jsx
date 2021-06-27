@@ -10,8 +10,8 @@ return(
         {name}&nbsp;&#8599;
       </a>
     </span>
-    <span className="repo-updated-at">{updatedAt}</span>
-    {description && <div className="repo-description">{description}</div>}
+    <span className="dev-repo-updated-at">{updatedAt}</span>
+    {description && <div className="dev-repo-description">{description}</div>}
   </div>
 );
 }
